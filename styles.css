@@ -1,13 +1,24 @@
 body {
-    background-color: aqua;
+    background-color: rgba(203, 232, 242, 0.415);
     font-family: sans-serif;
+    margin: 0;
+}
+
+.background {
+    background-image: url(images/bg-header-desktop.svg);
+    background-repeat: no-repeat;
+    background-color: rgba(104, 205, 252, 0.724);
+    /* background-size: cover; */
+    background-size: cover;
+    width: 100%;
+    height: 11.5rem;
 }
 
 .body {
     display: flex;
     flex-direction: column;
     width: 80%;
-    margin: auto;
+    margin: 6rem auto;
     align-items: center;
     gap: 35px;
 
@@ -44,7 +55,7 @@ body {
     gap: 10px;
     color: rgb(89, 169, 196);
     font-weight: 800;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 
