@@ -1,4 +1,4 @@
-function fetchAndUpdateJobs() {
+function fetchAndUpdateJobs(filterText = '') {
     fetch('data.json')
       .then(response => response.json())
       .then(jobs => {
@@ -45,13 +45,35 @@ function fetchAndUpdateJobs() {
            <span>${job.role}</span> <span>${job.level}</span> ${languageSpans}
           </div>
           `;
-  
           jobElement.innerHTML = jobContent;
-          jobListings.appendChild(jobElement);
+
+          
+          if (filterText === '' || 
+              job.role.includes(filterText) || 
+              job.level.includes(filterText) || 
+              (job.languages && job.languages.includes(filterText))) {
+            jobListings.appendChild(jobElement);
+          }
+
         });
       })
       .catch(error => console.error('Error fetching jobs:', error));
   }
+  document.addEventListener('DOMContentLoaded', fetchAndUpdateJobs());
   
-  document.addEventListener('DOMContentLoaded', fetchAndUpdateJobs);
-  
+  document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('clearFilter')) {
+        const filterDiv = event.target.closest('.filter-btn');
+        filterDiv.remove();
+        fetchAndUpdateJobs()
+    }
+    if (event.target.classList.contains('clear')){
+        const filter = document.getElementById('filter')
+        fetchAndUpdateJobs()
+    }
+    if (event.target.id === 'filter-btns') {
+        let filterText = event.target.textContent;
+        fetchAndUpdateJobs(filterText);
+    }
+});
+
