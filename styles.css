@@ -107,3 +107,8 @@ h3 {
     border-radius: 6px;
     font-weight: 800;
 }
+.right span:hover {
+    background-color: hsl(180, 29%, 45%);
+    cursor: pointer;
+    color: white;
+}
